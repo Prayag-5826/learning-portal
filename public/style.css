@@ -1,0 +1,114 @@
+/*
+  The CSS below enhances the provided HTML with a clean,
+  modern, and responsive design. It uses CSS variables for
+  easy theme customization and includes key visual improvements.
+*/
+
+/* --- CSS Variables --- */
+:root {
+  --primary-color: #185a9d; /* Deep blue */
+  --secondary-color: #43cea2; /* Vibrant green */
+  --text-color-dark: #333;
+  --text-color-light: #fff;
+  --bg-gradient: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+  --box-shadow-light: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --box-shadow-heavy: 0 4px 8px rgba(0, 0, 0, 0.2);
+  --border-radius-card: 12px;
+  --border-radius-button: 8px;
+}
+
+/* --- General Styles --- */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg-gradient);
+  margin: 0;
+  padding: 0;
+  color: var(--text-color-dark);
+}
+
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+}
+
+/* --- Header & Footer --- */
+header {
+  background: var(--primary-color);
+  color: var(--text-color-light);
+  text-align: center;
+  padding: 20px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: var(--box-shadow-heavy);
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  background: var(--primary-color);
+  color: var(--text-color-light);
+  margin-top: 30px;
+  font-size: 0.9rem;
+}
+
+/* --- Note Cards --- */
+.note-card {
+  background: var(--text-color-light);
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: var(--border-radius-card);
+  box-shadow: var(--box-shadow-light);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.note-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.note-card h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+}
+
+.note-card p {
+  margin: 8px 0 15px;
+  color: var(--text-color-dark);
+}
+
+/* --- Buttons/Links --- */
+.note-card a {
+  display: inline-block;
+  text-decoration: none;
+  background: var(--secondary-color);
+  color: var(--text-color-light);
+  padding: 10px 15px;
+  border-radius: var(--border-radius-button);
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+.note-card a:hover {
+  background: #2e8b57; /* A slightly darker shade of green */
+}
+
+/* --- Placeholder/Loading State --- */
+#notes p {
+  text-align: center;
+  color: var(--text-color-light);
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+  .note-card {
+    margin: 10px 0;
+  }
+}

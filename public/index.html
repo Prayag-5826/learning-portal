@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Portal - Study Notes</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #43cea2, #185a9d);
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #185a9d;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+    .note-card {
+      background: #fff;
+      padding: 20px;
+      margin: 15px 0;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease-in-out;
+    }
+    .note-card:hover {
+      transform: translateY(-5px);
+    }
+    .note-card h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: #185a9d;
+    }
+    .note-card a {
+      text-decoration: none;
+      background: #43cea2;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .note-card a:hover {
+      background: #2e8b57;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #185a9d;
+      color: #fff;
+      margin-top: 30px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>📚 Study Notes Portal</header>
+
+  <div class="container" id="notes">
+    <p style="text-align:center; color:white;">Loading notes...</p>
+  </div>
+
+  <footer>
+    © 2025 Learning Portal | Designed with ❤️
+  </footer>
+
+  <script>
+    const notesContainer = document.getElementById("notes");
+
+    // Fetch notes from server
+    fetch("/notes")
+      .then(res => res.json())
+      .then(notes => {
+        if (!notes.length) {
+          notesContainer.innerHTML = `<p style="text-align:center; color:white;">No notes uploaded yet.</p>`;
+          return;
+        }
+
+        // Render each note
+        notesContainer.innerHTML = notes.map(note => `
+          <div class="note-card">
+            <h2>${note.subject} - ${note.topic}</h2>
+            <a href="/${note.file}" target="_blank">View PDF</a>
+          </div>
+        `).join('');
+      })
+      .catch(err => {
+        notesContainer.innerHTML = `<p style="text-align:center; color:white;">Failed to load notes.</p>`;
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
